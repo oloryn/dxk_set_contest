@@ -2,9 +2,18 @@
 """Set QSOs from an ADIF file to a contest in DXKeeper"""
 
 import argparse
-
+from typing import List, Dict
 
 import adif
+
+
+def import_adif(adif_filename: str) -> List[Dict]:
+    """Import QSOS from ADIF file"""
+
+    parser = adif.Parser()
+    parser.parsefile(adif_filename)
+
+    return parser.contacts
 
 
 def main():
@@ -18,6 +27,9 @@ def main():
 
     args = parser.parse_args()
 
+    qsos = import_adif(args.adif_filename)
+
+    print(qsos)
 
 
 main()
