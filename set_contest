@@ -1,4 +1,23 @@
-#!/usr/bin/env python
+#!/usr/bin/env py
 """Set QSOs from an ADIF file to a contest in DXKeeper"""
 
+import argparse
+
+
 import adif
+
+
+def main():
+    """Set DXKeeper contest for QSOs in selected ADIF file"""
+    parser = argparse.ArgumentParser(
+        description="Set DXKeeper contest for QSOs in selected ADIF file"
+    )
+
+    parser.add_argument("contestname")
+    parser.add_argument("adif_filename")
+
+    args = parser.parse_args()
+
+
+
+main()
