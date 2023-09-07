@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+"""Set QSOs from an ADIF file to a contest in DXKeeper"""
+
+import adif
