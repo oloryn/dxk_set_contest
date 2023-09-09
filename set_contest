@@ -8,16 +8,15 @@ import argparse
 from typing import List, Dict
 import winreg
 
-import adif
+import adif_io
 
 
 def import_adif(adif_filename: str) -> List[Dict]:
     """Import QSOS from ADIF file"""
 
-    parser = adif.Parser()
-    parser.parsefile(adif_filename)
+    qsos, _ = adif_io.read_from_file(adif_filename)
 
-    return parser.contacts
+    return qsos
 
 
 def main():
@@ -47,8 +46,8 @@ def main():
     script_filename = script_directory + "\\setcontestname.txt"
     with open(script_filename, 'a', encoding="utf-8") as script_file:
         for qso in qsos:
-            # print(qso)
-            call = qso["call"]
+            print(qso)
+            call = qso["CALL"]
             print("FILTER",
                   f"CALL='{call}')",
                   file=script_file)
