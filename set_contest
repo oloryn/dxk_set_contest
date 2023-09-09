@@ -43,5 +43,16 @@ def main():
     )
     script_directory = winreg.QueryValueEx(dxkeeper_reg, "ScriptDirectory")[0]
 
+    # Open script file
+    script_filename = script_directory + "\\setcontestname.txt"
+    with open(script_filename, 'a', encoding="utf-8") as script_file:
+        for qso in qsos:
+            # print(qso)
+            call = qso["call"]
+            print("FILTER",
+                  f"CALL='{call}')",
+                  file=script_file)
+            print("Modify CONTEST_ID", args.contestname, file=script_file)
+
 
 main()
