@@ -45,11 +45,16 @@ def main():
     # Open script file
     script_filename = script_directory + "\\setcontestname.txt"
     with open(script_filename, 'a', encoding="utf-8") as script_file:
+        # For each QSO
         for qso in qsos:
-            print(qso)
+            # Set up filter values
             call = qso["CALL"]
+            qso_time = adif_io.time_on(qso)
+            time = qso_time.strftime('%Y-%m-%d %H:%M:%S')
+            # Print Filter and Modify to DXKeeper script
             print("FILTER",
-                  f"CALL='{call}')",
+                  f"(CALL='{call}')",
+                  f"AND (QSO_Begin = #{time}#)",
                   file=script_file)
             print("Modify CONTEST_ID", args.contestname, file=script_file)
 
