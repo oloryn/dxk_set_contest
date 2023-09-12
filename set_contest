@@ -11,18 +11,9 @@ import winreg
 import adif_io
 
 
-def import_adif(adif_filename: str) -> List[Dict]:
-    """Import QSOS from ADIF file"""
+def collect_arguments() -> tuple[str, str]:
+    """Get arguments from command line"""
 
-    qsos, _ = adif_io.read_from_file(adif_filename)
-
-    return qsos
-
-
-def main():
-    """Set DXKeeper contest for QSOs in selected ADIF file"""
-
-    # Get arguments rom command line
     parser = argparse.ArgumentParser(
         description="Set DXKeeper contest for QSOs in selected ADIF file"
     )
@@ -32,8 +23,19 @@ def main():
 
     args = parser.parse_args()
 
-    # import QSOs from ADIF file
-    qsos = import_adif(args.adif_filename)
+    return (args.contestname, args.adif_filename)
+
+
+def import_adif(adif_filename: str) -> List[Dict]:
+    """Import QSOS from ADIF file"""
+
+    qsos, _ = adif_io.read_from_file(adif_filename)
+
+    return qsos
+
+
+def write_script(qsos, contestname):
+    """Write DXKeeper Script file"""
 
     # Get DXKeeper Scripts directory from registry
     dxkeeper_reg = winreg.OpenKeyEx(
@@ -41,7 +43,6 @@ def main():
         "SOFTWARE\\VB and VBA Program Settings\\DXKeeper\\Configuration"
     )
     script_directory = winreg.QueryValueEx(dxkeeper_reg, "ScriptDirectory")[0]
-
     dxkeeper_reg.Close()
 
     # Open script file
@@ -58,7 +59,18 @@ def main():
                   f"(CALL='{call}')",
                   f"AND (QSO_Begin = #{time}#)",
                   file=script_file)
-            print("Modify CONTEST_ID", args.contestname, file=script_file)
+            print("Modify CONTEST_ID", contestname, file=script_file)
+
+
+def main():
+    """Set DXKeeper contest for QSOs in selected ADIF file"""
+
+    contestname, adif_filename = collect_arguments()
+
+    # import QSOs from ADIF file
+    qsos = import_adif(adif_filename)
+
+    write_script(qsos, contestname)
 
 
 main()
