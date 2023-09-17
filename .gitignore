@@ -1,3 +1,5 @@
 venv
 .mypy_cache
 NJ8J.adi
+dist
+*.egg-info

@@ -1,0 +1,30 @@
+[project]
+name = "set_contest"
+authors = [{name = "Ben Coleman", email = "oloryn@benshome.net"}]
+version = "1.0.0"
+description = "Create a DXKeeper script that will set QSOs from an ADIF file to a passed contest id"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Database",
+]
+keywords = [
+    "Amateur Radio",
+    "Contact Logging",
+]
+dependencies = [
+    "adif_io"
+]
+
+[build-system]
+requires = ["setuptools>=65.5"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+set_contest = "set_contest:main"
