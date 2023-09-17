@@ -1,7 +1,9 @@
 #!/usr/bin/env py
 """
+Set_contest utility.
+
 Create a DXKeeper script that will set QSOs from an ADIF file to a passed
-contest id in DXKeeper
+contest id
 """
 
 import argparse
@@ -12,8 +14,7 @@ import adif_io
 
 
 def collect_arguments() -> tuple[str, str]:
-    """Get arguments from command line"""
-
+    """Get arguments from command line."""
     parser = argparse.ArgumentParser(
         description="Set DXKeeper contest for QSOs in selected ADIF file"
     )
@@ -27,16 +28,14 @@ def collect_arguments() -> tuple[str, str]:
 
 
 def import_adif(adif_filename: str) -> List[Dict]:
-    """Import QSOS from ADIF file"""
-
+    """Import QSOS from ADIF file."""
     qsos, _ = adif_io.read_from_file(adif_filename)
 
     return qsos
 
 
 def write_script(qsos, contestname):
-    """Write DXKeeper Script file"""
-
+    """Write DXKeeper Script file."""
     # Get DXKeeper Scripts directory from registry
     dxkeeper_reg = winreg.OpenKeyEx(
         winreg.HKEY_CURRENT_USER,
@@ -63,8 +62,7 @@ def write_script(qsos, contestname):
 
 
 def main():
-    """Set DXKeeper contest for QSOs in selected ADIF file"""
-
+    """Set DXKeeper contest for QSOs in selected ADIF file."""
     contestname, adif_filename = collect_arguments()
 
     # import QSOs from ADIF file
