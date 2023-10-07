@@ -27,4 +27,4 @@ requires = ["setuptools>=65.5"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-set_contest = "dxk_set_contest:set_contest"
+dxk_set_contest = "dxk_set_contest:set_contest"
