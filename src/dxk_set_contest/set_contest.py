@@ -1,6 +1,6 @@
 #!/usr/bin/env py
 """
-Set_contest utility.
+DXKeeper set_contest utility.
 
 Create a DXKeeper script that will set QSOs from an ADIF file to a passed
 contest id

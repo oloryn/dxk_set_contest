@@ -1,7 +1,7 @@
 [project]
-name = "set_contest"
+name = "dxk_set_contest"
 authors = [{name = "Ben Coleman", email = "oloryn@benshome.net"}]
-version = "1.0.1"
+version = "1.0.2"
 description = "Create a DXKeeper script that will set QSOs from an ADIF file to a passed contest id"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,4 +27,4 @@ requires = ["setuptools>=65.5"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-set_contest = "set_contest:set_contest"
+set_contest = "dxk_set_contest:set_contest"
