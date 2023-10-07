@@ -4,15 +4,15 @@ authors = [{name = "Ben Coleman", email = "oloryn@benshome.net"}]
 version = "1.0.2"
 description = "Create a DXKeeper script that will set QSOs from an ADIF file to a passed contest id"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: Microsoft :: Windows",
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
     "Intended Audience :: End Users/Desktop",
-    "Topic :: Database",
+    "Topic :: Communications :: Ham Radio",
 ]
 keywords = [
     "Amateur Radio",
