@@ -10,7 +10,7 @@ import argparse
 from typing import List, Dict
 import winreg
 
-import adif_io
+import adif_io  # type: ignore
 
 
 def collect_arguments() -> tuple[str, str]:
